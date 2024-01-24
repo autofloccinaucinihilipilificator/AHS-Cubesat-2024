@@ -82,7 +82,7 @@ def take_photo():
         if accelx ** 2 + accely ** 2 + accelz ** 2 > THRESHOLD ** 2:
           time.sleep(5) # tweak this
           file_name = img_gen(name)
-          picam2.capture(file_name)
+          picam2.capture_file(file_name)
           git_push()
           break
 
