@@ -10,8 +10,8 @@ The provided functions are only for reference, you do not need to use them.
 You will need to complete the take_photo() function and configure the VARIABLES section
 """
 
-#AUTHOR: 
-#DATE:
+#AUTHOR: AHS Physics Club
+#DATE: 22/01/24
 
 #import libraries
 import time
@@ -21,10 +21,10 @@ from adafruit_lis3mdl import LIS3MDL
 from git import Repo
 from picamera2 import Picamera2
 
-#VARIABLES
-THRESHOLD = 0      #Any desired value from the accelerometer
-REPO_PATH = ""     #Your github repo path: ex. /home/pi/FlatSatChallenge
-FOLDER_PATH = ""   #Your image folder path in your GitHub repo: ex. /Images
+#VARIABLES - DO AT HOME
+THRESHOLD = 1      # Tweak this - Any desired value from the accelerometer
+REPO_PATH = ""     # Your github repo path: ex. /home/pi/FlatSatChallenge
+FOLDER_PATH = ""   # Your image folder path in your GitHub repo: ex. /Images
 
 #imu and camera initialization
 i2c = board.I2C()
@@ -69,15 +69,31 @@ def take_photo():
     This function is NOT complete. Takes a photo when the FlatSat is shaken.
     Replace psuedocode with your own code.
     """
+
+    name = input("Enter your name (e.g.  RobertZ: ")
+  
     while True:
         accelx, accely, accelz = accel_gyro.acceleration
+        # test to tweak threshold - remove later
+        print("accelx: ", accelx)
+        print("accely: ", accely)
+        print("accelz: ", accelz)
+
+        # if total accel above threshold
+        if accelx ** 2 + accely ** 2 + accelz ** 2 > THRESHOLD ** 2:
+          time.sleep(5) # tweak this
+          file_name = img_gen(name)
+          picam2.capture(file_name)
+          git_push()
+
+        time.sleep(5) # should this just exit the loop?
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
-            #name = ""     #First Name, Last Initial  ex. MasonM
+            #name = ""     #First Name, Last Initial  ex. MasonM # ???
             #TAKE PHOTO
             #PUSH PHOTO TO GITHUB
-        
+
         #PAUSE
 
 
