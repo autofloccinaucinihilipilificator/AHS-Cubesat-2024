@@ -74,7 +74,6 @@ def take_photo():
   
     while True:
         accelx, accely, accelz = accel_gyro.acceleration
-        # test to tweak threshold - remove later
         print("accelx: ", accelx)
         print("accely: ", accely)
         print("accelz: ", accelz)
@@ -85,8 +84,7 @@ def take_photo():
           file_name = img_gen(name)
           picam2.capture(file_name)
           git_push()
-
-        time.sleep(5) # should this just exit the loop?
+          break
 
         #CHECKS IF READINGS ARE ABOVE THRESHOLD
             #PAUSE
