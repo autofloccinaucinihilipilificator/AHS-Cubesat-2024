@@ -86,7 +86,7 @@ def take_photo():
         # if total accel above threshold
         if abs(accelx) + abs(accely) + abs(accelz) > THRESHOLD:
             print("Taking Photo")
-            time.sleep(5)  # tweak this
+            time.sleep(3)  # tweak this
             file_name = img_gen(name)
             picam2.capture_file(file_name)
             # git_push()
