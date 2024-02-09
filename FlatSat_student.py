@@ -22,7 +22,7 @@ from git import Repo
 from picamera2 import Picamera2
 
 # VARIABLES
-THRESHOLD = 5  # Tweak this - Any desired value from the accelerometer
+THRESHOLD = 15  # Tweak this - Any desired value from the accelerometer
 REPO_PATH = "autofloccinaucinihilipilificator/AHS-Cubesat-2024"  # Your github repo path: ex. /home/pi/FlatSatChallenge
 FOLDER_PATH = "image"  # Your image folder path in your GitHub repo: ex. /Images
 
@@ -84,7 +84,7 @@ def take_photo():
         print("accelz: ", accelz)
 
         # if total accel above threshold
-        if accelx ** 2 + accely ** 2 + accelz ** 2 > THRESHOLD ** 2:
+        if abs(accelx) + abs(accely) + abs(accelz) > THRESHOLD:
             print("Taking Photo")
             time.sleep(5)  # tweak this
             file_name = img_gen(name)
