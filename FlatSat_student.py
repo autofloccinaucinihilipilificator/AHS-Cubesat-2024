@@ -90,7 +90,7 @@ def take_photo():
             time.sleep(3)  # tweak this
             file_name = img_gen(name)
             picam2.capture_file(file_name)
-            # git_push()
+            git_push()
             break
 
         # CHECKS IF READINGS ARE ABOVE THRESHOLD
