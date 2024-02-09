@@ -22,7 +22,8 @@ from git import Repo
 from picamera2 import Picamera2
 
 # VARIABLES
-THRESHOLD = 15  # Tweak this - Any desired value from the accelerometer
+THRESHOLD = 25  # Tweak this - Any desired value from the accelerometer
+GIT_PATH = "autofloccinaucinihilipilificator/AHS-Cubesat-2024"
 REPO_PATH = "AHS-Cubesat-2024"  # Your github repo path: ex. /home/pi/FlatSatChallenge
 FOLDER_PATH = "images"  # Your image folder path in your GitHub repo: ex. /Images
 
@@ -47,12 +48,12 @@ def git_push():
     This function is complete. Stages, commits, and pushes new images to your GitHub repo.
     """
     try:
-        repo = Repo(REPO_PATH)
+        repo = Repo(GIT_PATH)
         origin = repo.remote('origin')
         print('added remote')
         origin.pull()
         print('pulled changes')
-        repo.git.add(REPO_PATH + FOLDER_PATH)
+        repo.git.add(GIT_PATH + '/' + FOLDER_PATH)
         repo.index.commit('New Photo')
         print('made the commit')
         origin.push()
