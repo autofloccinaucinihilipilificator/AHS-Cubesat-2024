@@ -19,7 +19,9 @@ import board
 from adafruit_lsm6ds.lsm6dsox import LSM6DSOX as LSM6DS
 from adafruit_lis3mdl import LIS3MDL
 from git import Repo
+from git import Git
 from picamera2 import Picamera2
+import os
 
 # VARIABLES
 THRESHOLD = 25  # Tweak this - Any desired value from the accelerometer
@@ -48,7 +50,11 @@ def git_push():
     This function is complete. Stages, commits, and pushes new images to your GitHub repo.
     """
     try:
-        repo = Repo(GIT_PATH)
+        git_ssh_identity_file = os.path.expanduser("~/.ssh/id_ed25519.pub")
+        git_ssh_cmd = 'ssh -i %s' % git_ssh_identity_file
+        repo = None
+        with Git().custom_envrionment(GIT_SSH_COMMAND=git_ssh_cmd):
+            repo = Repo(GIT_PATH)
         origin = repo.remote('origin')
         print('added remote')
         origin.pull()
