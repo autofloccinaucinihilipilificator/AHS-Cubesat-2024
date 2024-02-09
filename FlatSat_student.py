@@ -22,8 +22,8 @@ from git import Repo
 from picamera2 import Picamera2
 
 # VARIABLES
-THRESHOLD = 1  # Tweak this - Any desired value from the accelerometer
-REPO_PATH = ""  # Your github repo path: ex. /home/pi/FlatSatChallenge
+THRESHOLD = 5  # Tweak this - Any desired value from the accelerometer
+REPO_PATH = "autofloccinaucinihilipilificator/AHS-Cubesat-2024"  # Your github repo path: ex. /home/pi/FlatSatChallenge
 FOLDER_PATH = "/images"  # Your image folder path in your GitHub repo: ex. /Images
 
 # imu and camera initialization
@@ -85,7 +85,7 @@ def take_photo():
 
         # if total accel above threshold
         if accelx ** 2 + accely ** 2 + accelz ** 2 > THRESHOLD ** 2:
-            time.sleep(5)  # tweak this
+            time.sleep(15)  # tweak this
             file_name = img_gen(name)
             picam2.capture_file(file_name)
             git_push()
