@@ -4,7 +4,7 @@ roll, pitch, and yaw (RPY) and calibrate your measurements
 for better accuracy. Your functions are split into two activities.
 The first is basic RPY from the accelerometer and magnetometer. The
 second is RPY using the gyroscope. Finally, write the calibration functions.
-Run plot.py to test your functions, this is important because auto_camera.py 
+Run plot.py to test your functions, this is important because auto_camera.py
 relies on your sensor functions here.
 """
 
@@ -40,13 +40,16 @@ def yaw_am(accelX,accelY,accelZ,magX,magY,magZ):
 
 #Activity 2: RPY based on gyroscope
 def roll_gy(prev_angle, delT, gyro):
-    #TODO
+    #REVIEW
+    roll = prev_angle + (gyro * delT)
     return roll
 def pitch_gy(prev_angle, delT, gyro):
-    #TODO
+    #REVIEW
+    pitch = prev_angle + (gyro * delT)
     return pitch
 def yaw_gy(prev_angle, delT, gyro):
-    #TODO
+    #REVIEW
+    yaw = prev_angle + (gyro * delT)
     return yaw
 
 #Activity 3: Sensor calibration
